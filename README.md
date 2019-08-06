@@ -1,4 +1,4 @@
-# winbox-installer
+# winbox-linux-installer
 A simple helper script to install Mikrotik's Winbox in GNU/Linux
 
 ## Feature:
@@ -13,7 +13,7 @@ A simple helper script to install Mikrotik's Winbox in GNU/Linux
 Copy and paste this commands to your terminal:
 
 1. `cd /tmp`
-2. `git clone https://github.com/wiefung93/winbox-linux.git`
+2. `git clone https://github.com/wiefung93/winbox-linux-installer.git`
 3. `cd winbox-installer`
 4. `sudo ./winbox-setup install` **OR** `sudo bash winbox-setup install`
 
