@@ -68,7 +68,7 @@ wbDl() {
     echo "Using previously downloaded winbox.exe"
   else
     echo -n "Downloading Winbox..."
-    URL="http:"$(curl -s https://cloud.sbskomputer.net/ftp/windows | grep -o //.*winbox.exe)
+    URL="http:"$(curl -s https://portal.sbskomputer.web.id/ftp/windows | grep -o //.*winbox.exe)
     URLlenght=${#URL}
     if [[ $URLlenght<60 ]]; then
       echo "FAILED"
@@ -105,7 +105,7 @@ filesCp() {
 }
 
 lncCrt() {
-  echo -n "Creating application launcher..."
+  echo -n "Creating application launcher in Menu..."
   if touch /usr/share/applications/winbox.desktop
   then
     echo "[Desktop Entry]" > /usr/share/applications/winbox.desktop
@@ -125,11 +125,34 @@ lncCrt() {
     echo "FAILED"
     exit 1
   fi
+  
+  echo -n "Creating application launcher in Desktop..."
+  if touch $HOME/Desktop/winbox.desktop
+  then
+    echo "[Desktop Entry]" > $HOME/Desktop/winbox.desktop
+    echo "Name=Winbox" >> $HOME/Desktop/winbox.desktop
+    echo "GenericName=Configuration tool for RouterOS" >> $HOME/Desktop/winbox.desktop
+    echo "Comment=Configuration tool for RouterOS" >> $HOME/Desktop/winbox.desktop
+    echo "Exec=/usr/local/bin/winbox.sh" >> $HOME/Desktop/winbox.desktop
+    echo "Icon=winbox" >> $HOME/Desktop/winbox.desktop
+    echo "Terminal=false" >> $HOME/Desktop/winbox.desktop
+    echo "Type=Application" >> $HOME/Desktop/winbox.desktop
+    echo "StartupNotify=true" >> $HOME/Desktop/winbox.desktop
+    echo "Categories=Network;RemoteAccess;" >> $HOME/Desktop/winbox.desktop
+    echo "Keywords=winbox;mikrotik;" >> $HOME/Desktop/winbox.desktop
+    xdg-desktop-menu forceupdate --mode system
+    echo "DONE"
+  else
+    echo "FAILED"
+    exit 1
+  fi
+
 }
 
 filesRm() {
   echo -n "Removing launcher..."
   find /usr/share/applications/ -name "winbox.desktop" -delete
+  find $HOME/Desktop -name "winbox.desktop" -delete
   echo "DONE"
 
   echo -n "Removing icons..."
