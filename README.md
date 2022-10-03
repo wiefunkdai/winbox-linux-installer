@@ -7,7 +7,7 @@ A simple helper script to install Mikrotik's Winbox in GNU/Linux
 3. Upgrades wine (from the distribution's repo) to a newer version (only for Fedora, RHEL, CentOS, IGN)
 4. Menu entry in the application launcher
 5. Latest winbox from https://mikrotik.com/download
-6. Also winbox from https://sbskomputer.web.id
+6. Also winbox from https://stephanusdai.web.id
 
 ## How to install:
 Copy and paste this commands to your terminal:
